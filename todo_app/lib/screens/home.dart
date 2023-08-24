@@ -51,6 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
       isComplated: false,
     ),
   ];
+
+  void addNewTask(Task newTask){
+   setState(() {
+      todo.add(newTask);
+   });
+  }
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -137,7 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AddNewTaskScreen(),
+                    builder: (context) =>  AddNewTaskScreen(
+                      addNewTask: (newTask) => addNewTask(newTask),
+                    ),
                   ));
                 },
                 child: const Text("Add New Task"))
